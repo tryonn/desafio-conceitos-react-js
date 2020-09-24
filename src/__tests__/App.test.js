@@ -20,6 +20,7 @@ const actWait = async (amount = 0) => {
 describe("App component", () => {
 
   it("should be able to add new repository", async () => {
+
     const { getByText, getByTestId } = render(<App />);
 
     apiMock.onGet("repositories").reply(200, []);
@@ -58,7 +59,9 @@ describe("App component", () => {
     apiMock.onDelete("repositories/123").reply(204);
 
     await actWait();
+
     fireEvent.click(getByText("Remover"));
+
     await actWait();
 
     expect(getByTestId("repository-list")).toBeEmpty();
